@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,39 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    
-
-
+    <header>
+        <h1>Lig-4 - Rick and Morty</h1>
+    </header>
+    <main>
+        <div id="inicial">
+            <div id="portal">
+                <img src="imagens/giphy.gif" alt="portal">
+            </div>
+            <div id="rickAndMorty">
+                <div id="rickDiv">
+                <img id="rick" src="imagens/rick.png" alt="rick">
+            </div>
+            <div id="mortyDiv">
+                <img id="morty" src="imagens/morty.png" alt="morty">
+            </div>
+            </div>
+            <div id="regras">
+                <p>Como jogar/Regras: </p>
+                <p>São dois jogadores. Eles se alternam nas jogadas. Cada um com uma peça.
+                    Quem fizer uma combinação de quatro peças em qualquer direção (vertical, horizontal ou
+                        diagonal) ganha.
+                </p>
+                <label for="user1">Quem vai ser o Rick?</label>
+                <input type="text" placeholder="Coloque seu nome aqui">
+                <label for="user2">Quem vai ser o Morty?</label>
+                <input type="text" placeholder="Coloque seu nome aqui">
+                <button id="jogar">Jogar</button>
+            </div>
+        </div>
+    </main>
     <script src="./script.js"></script>
 </body>
+
 </html>
