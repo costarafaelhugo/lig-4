@@ -1,17 +1,189 @@
-#main{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+body {
+    background-image: url(imagens/background-stars.jpg);
+    width: 100vw;
 }
 
-.column {
-    border: 3px solid red;
-    display: flex;
-    flex-direction: column-reverse;
+header{
+    color: white;
+    font-size: 1.8em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', serif;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;;
 }
 
-.cell {
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#portal{
+    visibility: hidden;
+    display: none;
+}
+
+#rickAndMorty{
+   display: flex;
+   justify-content: space-around;
+   height: 152px;
+   width: 100%;
+}
+
+#rick{
     width: 150px;
-    height: 150px;
-    border: 1px dashed blue;
+    height: 155px;
+}
+
+#morty{
+    width: 150px;
+    height: 160px;
+}
+
+#regras{
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(48,157,11);
+    background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
+    width: 85%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 5px;
+    color: white;
+    margin-left: 25px;
+}
+
+
+input {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    background-color: rgba(27,60,37,1)
+}
+
+#jogar {
+    width: 210px;
+    padding: 5px;
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+@media(min-width: 500px){
+
+body {
+    margin: 0;
+    width: 100vw;
+}
+
+header{
+    width: 100%;
+}
+
+main{
+    width: 100%;
+}
+
+#inicial {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#portal {
+    visibility: visible;
+    display: contents;
+}
+
+#portal img{
+    width: 40%;
+   
+}
+
+#rickAndMorty{
+    position: absolute;
+    width: 20%;
+    height: 40%;
+    top: 25%;
+    left: 20%;
+}
+
+#rickDiv{
+    position: relative;
+    animation-name: rick;
+    animation-duration: 4s;
+    animation-iteration-count: infinite
+}
+
+@keyframes rick {
+    0%   { left:0px; top:0px;}
+    25%  { left:0px; top:190px;}
+    50%  { left:0px; top:0px;}
+    75%  { left:0px; top:190px;}
+    100% { left:0px; top:0px;}
+}
+
+#mortyDiv{
+    position: relative;
+    animation-name: morty;
+    animation-duration: 4s;
+    animation-iteration-count: infinite
+}
+
+@keyframes morty {
+    0%   { left:0px; top:190px;}
+    25%  { left:0px; top:0px;}
+    50%  { left:0px; top:190px;}
+    75%  { left:0px; top:0px;}
+    100% { left:0px; top:190px;}
+}
+
+#rick{
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+
+#morty{
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+#regras{
+    padding: 15px;
+    color: white;
+    margin-top: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    background: rgb(48,157,11);
+    background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
+    height: 300px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+   
+}
+
+input {
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(27,60,37,1);
+}
+
+#jogar {
+    width: 210px;
+    padding: 5px;
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
 }
