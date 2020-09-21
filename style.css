@@ -1,0 +1,17 @@
+#main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.column {
+    border: 3px solid red;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed blue;
+}
