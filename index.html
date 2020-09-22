@@ -20,30 +20,34 @@
             </div>
             <div id="rickAndMorty">
                 <div id="rickDiv">
-                <img id="rick" src="imagens/rick.png" alt="rick">
-            </div>
-            <div id="mortyDiv">
-                <img id="morty" src="imagens/morty.png" alt="morty">
-            </div>
+                    <img id="rick" src="imagens/rick.png" alt="rick">
+                </div>
+                <div id="mortyDiv">
+                    <img id="morty" src="imagens/morty.png" alt="morty">
+                </div>
             </div>
             <div id="regras">
                 <p>Como jogar/Regras: </p>
                 <p>São dois jogadores. Eles se alternam nas jogadas. Cada um com uma peça.
-                    Quem fizer uma combinação de quatro peças em qualquer direção (vertical, horizontal ou diagonal) ganha.
+                    Quem fizer uma combinação de quatro peças em qualquer direção (vertical, horizontal ou diagonal)
+                    ganha.
                 </p>
                 <label for="user1">Quem vai ser o Rick?</label>
-                <input type="text" placeholder="Coloque seu nome aqui">
+                <input id="player1" type="text" placeholder="Coloque seu nome aqui">
                 <label for="user2">Quem vai ser o Morty?</label>
-                <input type="text" placeholder="Coloque seu nome aqui">
+                <input id="player2" type="text" placeholder="Coloque seu nome aqui">
                 <button id="jogar">Jogar</button>
             </div>
         </div>
 
-        <div id="board">
 
-
+        <div id="currentPlayer" class="boardHide">
         </div>
-        
+        <div id="board" class="boardHide">
+        </div>
+
+
+
     </main>
     <script src="./script.js"></script>
 </body>
