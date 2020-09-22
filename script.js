@@ -29,3 +29,34 @@ function makeBoard() {
         }
     }
 }
+
+makeBoard()
+
+addEventLitners()
+
+function addEventLitners() {
+    let column = document.getElementsByClassName('column')
+    for(let i = 0; i < column.length; i++){
+        column[i].addEventListener('click', creatSon)
+    }
+}
+
+function creatSon(u){
+    u.stopPropagation()
+    let column = u.target.parentNode
+    let cells = column.children
+    console.log(cells)
+    peace = document.createElement('div')
+    peace.classList.add('rick')
+    let lastCellViable = null
+    for(let i = 0; i < cells.length; i++){
+        if (cells[i].childElementCount === 0){
+            lastCellViable = cells[i]
+            break
+        }
+    }
+
+    lastCellViable.appendChild(peace)
+    console.log(lastCellViable)
+    
+}
