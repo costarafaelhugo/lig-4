@@ -16,6 +16,7 @@ h1 {
     background: -webkit-linear-gradient(#eee, #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 1px white;
 }
 
 
@@ -262,6 +263,15 @@ input {
         color: white;
         border-radius: 10px;
         border: none;
+    }
+
+    #board{
+        height: 70vh;
+        margin-bottom: 0px;
+    }
+    .column{
+        width: 8vw;
+        height: 70vh;
     }
 
     .column{

@@ -57,6 +57,8 @@ function creatSon(u) {
         rickImg.src = 'imagens/rick.png'
         peace.appendChild(rickImg)
         currentPlayer++
+        console.log(this)
+        vertical(this)
     }
     else {
         peace.classList.add('morty')
@@ -105,4 +107,30 @@ function playersTurn(a){
         let player2 = document.getElementById('player2').value
         output.innerText = `Sua vez ${player2}!`
     }
+}
+
+
+// function vertical(){
+//     let ricks = Array.from(document.getElementsByClassName('rick'))
+//     console.log(typeof(ricks))
+//     let rickParents = []
+
+//     ricks.forEach(element => {
+//         rickParents.push(element.parentElement.id.split(""))
+//     });
+
+//     for(let i = 0; i < rickParents.length;i++){
+//         for(let j = rickParents.length; j > 0; j--){
+//             if(rickParents[i][j] === rickParents[i+1][j]){
+//                 console.log('temos uma sequencia')
+//             }
+//         }
+//     }
+
+//     console.log(rickParents)
+// }
+
+function vertical(column){
+    let filhos = column.children
+    console.log(filhos)
 }
