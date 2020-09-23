@@ -1,12 +1,12 @@
 body {
     background-image: url(imagens/background-stars.jpg);
     width: 100vw;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 header{
     color: white;
     font-size: 1.5em;
-    font-family: 'Courier New', Courier, monospace;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 10px;;
@@ -50,7 +50,6 @@ main {
 }
 
 #regras{
-    font-family: 'Courier New', Courier, monospace;
     background: rgb(48,157,11);
     background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
     width: 85%;
@@ -62,6 +61,7 @@ main {
     padding: 5px;
     color: white;
     margin-left: 25px;
+    border-radius: 10px;
 }
 
 
@@ -141,7 +141,6 @@ input {
     font-size: 1.3em;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-family: 'Courier New', Courier, monospace;
     color: white;
     padding: 10px;
     background: rgb(48,157,11);
@@ -236,7 +235,6 @@ input {
         color: white;
         margin-top: 7%;
         margin-right: 4%;
-        font-family: 'Courier New', Courier, monospace;
         background: rgb(48,157,11);
         background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
         height: 300px;

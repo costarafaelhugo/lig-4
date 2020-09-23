@@ -57,8 +57,6 @@ function creatSon(u) {
         rickImg.src = 'imagens/rick.png'
         peace.appendChild(rickImg)
         currentPlayer++
-        console.log(this)
-        vertical(this)
     }
     else {
         peace.classList.add('morty')
@@ -75,26 +73,26 @@ function creatSon(u) {
         }
     }
     lastCellViable.appendChild(peace)
+    console.log(peace)
+    modifyBoard(peace)
+    seekVertical(peace)
 }
 
 
-function play(){
-    let button = document.getElementById('jogar')
-    button.addEventListener('click', function(){
-        let hidden = document.getElementById('inicial')
-        hidden.classList.add('hide') 
 
-        let board = document.getElementById('board')
-        board.classList.remove('boardHide')
+let button = document.getElementById('jogar')
+button.addEventListener('click', function(){
+    let hidden = document.getElementById('inicial')
+    hidden.classList.add('hide') 
 
-        let divPlayer = document.getElementById('currentPlayer')
-        divPlayer.classList.remove('boardHide')
+    let board = document.getElementById('board')
+    board.classList.remove('boardHide')
 
-        playersTurn(rick)
-    })
-}
+    let divPlayer = document.getElementById('currentPlayer')
+    divPlayer.classList.remove('boardHide')
 
-play()
+    playersTurn(rick)
+})
 
 function playersTurn(a){
     let output = document.getElementById('currentPlayer')
@@ -109,28 +107,31 @@ function playersTurn(a){
     }
 }
 
+function modifyBoard(letter){
+    let arrId = letter.parentNode.id.split('')
+    console.log(letter.classList.value)
+    if(letter.classList.value === "rick"){
+        board[arrId[0]].splice(arrId[2], 1, "R" )
+        console.log(board)
+    }
+    if(letter.classList.value === "morty"){
+        board[arrId[0]].splice(arrId[2], 1, "M" )
+        console.log(board)
+    }
+}
 
-// function vertical(){
-//     let ricks = Array.from(document.getElementsByClassName('rick'))
-//     console.log(typeof(ricks))
-//     let rickParents = []
-
-//     ricks.forEach(element => {
-//         rickParents.push(element.parentElement.id.split(""))
-//     });
-
-//     for(let i = 0; i < rickParents.length;i++){
-//         for(let j = rickParents.length; j > 0; j--){
-//             if(rickParents[i][j] === rickParents[i+1][j]){
-//                 console.log('temos uma sequencia')
-//             }
-//         }
-//     }
-
-//     console.log(rickParents)
-// }
-
-function vertical(column){
-    let filhos = column.children
-    console.log(filhos)
+function seekVertical(letter){
+    const edgeX = board[0].length - 3
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < edgeX; j++){
+            if(letter.classList.value === "rick"){
+                let cell = "R"
+                if(cell === board[i][j+1] && cell === board[i][j+2] && cell === board[i][j+3]){
+                    console.log('WIN')
+                    break
+                }
+                
+            }
+        }
+    }
 }
