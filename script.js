@@ -65,7 +65,11 @@ function creatSon(u) {
         peace.appendChild(rickImg)
         lastCellViable.appendChild(peace)
         modifyBoard(peace)
-        seekAndDestroy(peace)
+        if (seekAndDestroy()){
+            let output = document.getElementById('currentPlayer')
+            let player1 = document.getElementById('player1').value
+            output.innerText = `Parabéns ${player1}, você venceu! Um Rick sempre vai ser melhor que um Morty...`
+        }
         currentPlayer++
     }
     else {
@@ -75,11 +79,24 @@ function creatSon(u) {
         peace.appendChild(mortyImg)
         lastCellViable.appendChild(peace)
         modifyBoard(peace)
-        seekAndDestroy(peace)
+        if (seekAndDestroy()){
+            let output = document.getElementById('currentPlayer')
+            let player2 = document.getElementById('player2').value
+            output.innerText = `Parabéns ${player2}, você venceu! As vezes um Morty consegue ser melhor...`
+        }
         currentPlayer--
     }
 }
 
+
+for(let i = 0; i < board.length; i++){
+    for(let j = 0; j < board[i].length; j++){
+        if (board[i][j] !== "c"){
+            let output = document.getElementById('currentPlayer')
+            output.innerText = "Deu empate!"
+        }
+    }
+}
 
 
 let button = document.getElementById('jogar')
@@ -124,7 +141,7 @@ function modifyBoard(letter) {
 
 
 
-function seekAndDestroy(letter) {
+function seekAndDestroy() {
     let edgeI = board.length
     let edgeJ = board[0].length - 3
 
