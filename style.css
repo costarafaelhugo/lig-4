@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 body {
     background-image: url(imagens/background-stars.jpg);
     width: 100vw;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Covered By Your Grace', cursive;
 }
 
 header{
@@ -50,6 +53,8 @@ main {
 }
 
 #regras{
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
     background: rgb(48,157,11);
     background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
     width: 85%;
@@ -66,6 +71,9 @@ main {
 
 
 input {
+    text-align: center;
+    font-size: .8em;
+    font-family: 'Courier New', Courier, monospace;
     border-radius: 10px;
     border: none;
     padding: 10px;
@@ -74,20 +82,22 @@ input {
 }
 
 #jogar {
-    width: 210px;
-    padding: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 220px;
+    padding: 7px;
     text-transform: uppercase;
     background-color: black;
     color: white;
     border-radius: 10px;
     border: none;
+    margin-top: 10px;
 }
 
 #board {
     margin: 40px 0px; 
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: bottom;
 }
 
 .column {
@@ -139,8 +149,9 @@ input {
 
 #currentPlayer{
     font-size: 1.3em;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    /* font-family: 'Courier New', Courier, monospace; */
     color: white;
     padding: 10px;
     background: rgb(48,157,11);
@@ -153,11 +164,12 @@ input {
     body {
         margin: 0;
         width: 99vw;
+        font-family: 'Covered By Your Grace', cursive;
     }
 
     header{
         width: 100%;
-        font-size: 1.8em;
+        font-size: 2em;
     }
 
     main{
@@ -254,8 +266,10 @@ input {
     }
 
     #jogar {
-        width: 210px;
-        padding: 5px;
+        margin-top: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        width: 190px;
+        padding: 8px;
         text-transform: uppercase;
         background-color: black;
         color: white;
@@ -263,18 +277,18 @@ input {
         border: none;
     }
 
+    #currentPlayer{
+        margin-bottom: 10px;
+    }
+    
     #board{
         height: 70vh;
         margin-bottom: 0px;
     }
-    .column{
-        width: 8vw;
-        height: 70vh;
-    }
 
     .column{
         width: 8vw;
-        height: 60vh;
+        height: 70vh;
     }
 
     .cell {
