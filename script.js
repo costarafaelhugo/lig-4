@@ -73,26 +73,26 @@ function creatSon(u) {
         }
     }
     lastCellViable.appendChild(peace)
+    console.log(peace)
+    modifyBoard(peace)
+    seekVertical(peace)
 }
 
 
-function play(){
-    let button = document.getElementById('jogar')
-    button.addEventListener('click', function(){
-        let hidden = document.getElementById('inicial')
-        hidden.classList.add('hide') 
 
-        let board = document.getElementById('board')
-        board.classList.remove('boardHide')
+let button = document.getElementById('jogar')
+button.addEventListener('click', function(){
+    let hidden = document.getElementById('inicial')
+    hidden.classList.add('hide') 
 
-        let divPlayer = document.getElementById('currentPlayer')
-        divPlayer.classList.remove('boardHide')
+    let board = document.getElementById('board')
+    board.classList.remove('boardHide')
 
-        playersTurn(rick)
-    })
-}
+    let divPlayer = document.getElementById('currentPlayer')
+    divPlayer.classList.remove('boardHide')
 
-play()
+    playersTurn(rick)
+})
 
 function playersTurn(a){
     let output = document.getElementById('currentPlayer')
@@ -104,5 +104,34 @@ function playersTurn(a){
     if (a === morty){
         let player2 = document.getElementById('player2').value
         output.innerText = `Sua vez ${player2}!`
+    }
+}
+
+function modifyBoard(letter){
+    let arrId = letter.parentNode.id.split('')
+    console.log(letter.classList.value)
+    if(letter.classList.value === "rick"){
+        board[arrId[0]].splice(arrId[2], 1, "R" )
+        console.log(board)
+    }
+    if(letter.classList.value === "morty"){
+        board[arrId[0]].splice(arrId[2], 1, "M" )
+        console.log(board)
+    }
+}
+
+function seekVertical(letter){
+    const edgeX = board[0].length - 3
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < edgeX; j++){
+            if(letter.classList.value === "rick"){
+                let cell = "R"
+                if(cell === board[i][j+1] && cell === board[i][j+2] && cell === board[i][j+3]){
+                    console.log('WIN')
+                    break
+                }
+                
+            }
+        }
     }
 }
