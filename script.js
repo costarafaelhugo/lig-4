@@ -73,36 +73,141 @@ function creatSon(u) {
         }
     }
     lastCellViable.appendChild(peace)
+    modifyBoard(peace)
+    seekVertical(peace)
+    seekHorizontal(peace)
+    seekDiagonalDownRight(peace)
+    seekDiagonalDownLeft(peace)
 }
 
 
-function play(){
-    let button = document.getElementById('jogar')
-    button.addEventListener('click', function(){
-        let hidden = document.getElementById('inicial')
-        hidden.classList.add('hide') 
 
-        let board = document.getElementById('board')
-        board.classList.remove('boardHide')
+let button = document.getElementById('jogar')
+button.addEventListener('click', function () {
+    let hidden = document.getElementById('inicial')
+    hidden.classList.add('hide')
 
-        let divPlayer = document.getElementById('currentPlayer')
-        divPlayer.classList.remove('boardHide')
+    let board = document.getElementById('board')
+    board.classList.remove('boardHide')
 
-        playersTurn(rick)
-    })
-}
+    let divPlayer = document.getElementById('currentPlayer')
+    divPlayer.classList.remove('boardHide')
 
-play()
+    playersTurn(rick)
+})
 
-function playersTurn(a){
+function playersTurn(a) {
     let output = document.getElementById('currentPlayer')
-    if (a === rick){
+    if (a === rick) {
         let player1 = document.getElementById('player1').value
         output.innerText = `Sua vez ${player1}!`
     }
 
-    if (a === morty){
+    if (a === morty) {
         let player2 = document.getElementById('player2').value
         output.innerText = `Sua vez ${player2}!`
+    }
+}
+
+function modifyBoard(letter) {
+    let arrId = letter.parentNode.id.split('')
+    if (letter.classList.value === "rick") {
+        board[arrId[0]].splice(arrId[2], 1, "R")
+    }
+    if (letter.classList.value === "morty") {
+        board[arrId[0]].splice(arrId[2], 1, "M")
+    }
+}
+
+
+
+
+
+function seekVertical(letter) {
+    const edgeX = board[0].length - 3
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < edgeX; j++) {
+            if (letter.classList.value === "rick") {
+                let cell = "R"
+                if (cell === board[i][j + 1] && cell === board[i][j + 2] && cell === board[i][j + 3] && cell === board[i][j + 4]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+            if (letter.classList.value === "morty") {
+                let cell = "M"
+                if (cell === board[i][j + 1] && cell === board[i][j + 2] && cell === board[i][j + 3] && cell === board[i][j + 4]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+        }
+    }
+}
+
+function seekHorizontal(letter) {
+    const edgeY = board.length - 3
+    for (let i = 0; i < edgeY; i++) {
+        for (let j = 0; j < board[0].length; j++) {
+            if (letter.classList.value === "rick") {
+                let cell = "R"
+                if (cell === board[i + 1][j] && cell === board[i + 2][j] && cell === board[i + 3][j] && cell === board[i + 4][j]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+            if (letter.classList.value === "morty") {
+                let cell = "M"
+                if (cell === board[i + 1][j] && cell === board[i + 2][j] && cell === board[i + 3][j] && cell === board[i + 4][j]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+        }
+    }
+}
+
+function seekDiagonalDownRight(letter) {
+    let edgeX = board[0].length - 4
+    for (let i = 2; i < board.length; i++) {
+        for (let j = 0; j < edgeX; j++) {
+            if (letter.classList.value === "rick") {
+                let cell = "R"
+                if (cell === board[i - 1][j + 1] && cell === board[i - 2][j + 2] && cell === board[i - 3][j + 3] && cell === board[i - 4][j + 4]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+            if (letter.classList.value === "morty") {
+                let cell = "M"
+                if (cell === board[i - 1][j + 1] && cell === board[i - 2][j + 2] && cell === board[i - 3][j + 3] && cell === board[i - 4][j + 4]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+        }
+    }
+}
+
+function seekDiagonalDownLeft(letter) {
+    let edgeY = board.length - 4
+    let edgeX = board[0].length - 4
+    for (let i = 0; i < edgeY; i++) {
+        for (let j = 0; j < edgeX; j++) {
+            if (letter.classList.value === "rick") {
+                let cell = "R"
+                if (cell === board[i + 1][j + 1] && cell === board[i + 2][j + 2] && cell === board[i + 3][j + 3] && cell === board[i + 4][j + 4]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+            if (letter.classList.value === "morty") {
+                let cell = "M"
+                if (cell === board[i + 1][j + 1] && cell === board[i + 2][j + 2] && cell === board[i + 3][j + 3] && cell === board[i + 4][j + 4]) {
+                    console.log('WIN')
+                    break
+                }
+            }
+        }
     }
 }

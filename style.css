@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 body {
     background-image: url(imagens/background-stars.jpg);
     width: 100vw;
+    font-family: 'Covered By Your Grace', cursive;
 }
 
 header{
     color: white;
     font-size: 1.5em;
-    font-family: 'Courier New', Courier, monospace;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 10px;;
@@ -16,6 +19,7 @@ h1 {
     background: -webkit-linear-gradient(#eee, #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 1px white;
 }
 
 
@@ -62,11 +66,13 @@ main {
     padding: 5px;
     color: white;
     margin-left: 25px;
+    border-radius: 10px;
 }
 
 
 input {
     text-align: center;
+    font-size: .8em;
     font-family: 'Courier New', Courier, monospace;
     border-radius: 10px;
     border: none;
@@ -77,13 +83,14 @@ input {
 
 #jogar {
     font-family: 'Courier New', Courier, monospace;
-    width: 232px;
+    width: 220px;
     padding: 7px;
     text-transform: uppercase;
     background-color: black;
     color: white;
     border-radius: 10px;
     border: none;
+    margin-top: 10px;
 }
 
 #board {
@@ -144,7 +151,7 @@ input {
     font-size: 1.3em;
     margin-top: 10px;
     margin-bottom: 30px;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
     color: white;
     padding: 10px;
     background: rgb(48,157,11);
@@ -157,11 +164,12 @@ input {
     body {
         margin: 0;
         width: 99vw;
+        font-family: 'Covered By Your Grace', cursive;
     }
 
     header{
         width: 100%;
-        font-size: 1.8em;
+        font-size: 2em;
     }
 
     main{
@@ -239,7 +247,6 @@ input {
         color: white;
         margin-top: 7%;
         margin-right: 4%;
-        font-family: 'Courier New', Courier, monospace;
         background: rgb(48,157,11);
         background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
         height: 300px;
@@ -259,9 +266,10 @@ input {
     }
 
     #jogar {
+        margin-top: 10px;
         font-family: 'Courier New', Courier, monospace;
-        width: 222px;
-        padding: 7px;
+        width: 190px;
+        padding: 8px;
         text-transform: uppercase;
         background-color: black;
         color: white;
