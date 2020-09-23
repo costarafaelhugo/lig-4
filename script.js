@@ -65,7 +65,11 @@ function creatSon(u) {
         peace.appendChild(rickImg)
         lastCellViable.appendChild(peace)
         modifyBoard(peace)
-        seekAndDestroy(peace)
+        if (seekAndDestroy()) {
+            let output = document.getElementById('currentPlayer')
+            let player1 = document.getElementById('player1').value
+            output.innerText = `Parabéns ${player1}, você venceu! Um Rick sempre vai ser melhor que um Morty...`
+        }
         currentPlayer++
     }
     else {
@@ -75,9 +79,34 @@ function creatSon(u) {
         peace.appendChild(mortyImg)
         lastCellViable.appendChild(peace)
         modifyBoard(peace)
-        seekAndDestroy(peace)
+        if (seekAndDestroy()) {
+            let output = document.getElementById('currentPlayer')
+            let player2 = document.getElementById('player2').value
+            output.innerText = `Parabéns ${player2}, você venceu! As vezes um Morty consegue ser melhor...`
+        }
+
         currentPlayer--
     }
+    if (isDraw()) {
+        let output = document.getElementById('currentPlayer')
+        output.innerText = "Deu empate!"
+    }
+}
+
+console.log(board)
+
+
+
+function isDraw() {
+    let result = true
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 1; j < board[i].length; j++) {
+            if (board[i][j] === "c") {
+                result = false
+            }
+        }
+    }
+    return result
 }
 
 
@@ -94,7 +123,7 @@ button.addEventListener('click', function () {
     divPlayer.classList.remove('boardHide')
 
     playersTurn(rick)
-    
+
 })
 
 function playersTurn(a) {
@@ -124,16 +153,16 @@ function modifyBoard(letter) {
 
 
 
-function seekAndDestroy(letter) {
+function seekAndDestroy() {
     let edgeI = board.length
     let edgeJ = board[0].length - 3
 
     //vertical linha por linha
-    for(let i = 0; i < edgeI; i++){
-        for(j = 1; j < edgeJ; j++){
+    for (let i = 0; i < edgeI; i++) {
+        for (j = 1; j < edgeJ; j++) {
             let cell = board[i][j]
-            if(cell !== "c"){
-                if(cell === board[i][j+1] && cell == board[i][j+2] && cell === board[i][j+3]){
+            if (cell !== "c") {
+                if (cell === board[i][j + 1] && cell == board[i][j + 2] && cell === board[i][j + 3]) {
                     console.log(`${currentPlayer} VERTICAL WIN`)
                     return true
                 }
@@ -144,11 +173,11 @@ function seekAndDestroy(letter) {
     //horizontal
     edgeI = board.length - 3
     edgeJ = board[0].length
-    for(let i = 0; i < edgeI ; i++){
-        for(let j = 1; j < edgeJ; j++){
+    for (let i = 0; i < edgeI; i++) {
+        for (let j = 1; j < edgeJ; j++) {
             let cell = board[i][j]
-            if(cell !== "c"){
-                if(cell === board[i+1][j] && cell === board[i+2][j] && cell === board[i+3][j]){
+            if (cell !== "c") {
+                if (cell === board[i + 1][j] && cell === board[i + 2][j] && cell === board[i + 3][j]) {
                     console.log(`${currentPlayer} HORIZONTAL WIN`)
                     return true
                 }
@@ -158,12 +187,12 @@ function seekAndDestroy(letter) {
 
     //diagonalUpRight
     edgeI = board.length - 3
-    edgeJ = board[0].length -3
-    for(let i = 0; i < edgeI; i++){
-        for(let j = 1; j < edgeJ; j++){
+    edgeJ = board[0].length - 3
+    for (let i = 0; i < edgeI; i++) {
+        for (let j = 1; j < edgeJ; j++) {
             let cell = board[i][j]
-            if(cell !== "c"){
-                if(cell === board[i+1][j+1] && cell === board[i+2][j+2] && cell === board[i+3][j+3]){
+            if (cell !== "c") {
+                if (cell === board[i + 1][j + 1] && cell === board[i + 2][j + 2] && cell === board[i + 3][j + 3]) {
                     console.log(`${currentPlayer} DiagonalUpRight WIN`)
                     return true
                 }
@@ -172,11 +201,11 @@ function seekAndDestroy(letter) {
     }
 
     edgeI = board.length
-    for(let i = 3; i < edgeI; i++){
-        for(let j = 1; j < edgeJ; j++){
+    for (let i = 3; i < edgeI; i++) {
+        for (let j = 1; j < edgeJ; j++) {
             let cell = board[i][j]
-            if(cell !== "c"){
-                if(cell === board[i-1][j+1] && cell === board[i-2][j+2] && cell === board[i-3][j+3]){
+            if (cell !== "c") {
+                if (cell === board[i - 1][j + 1] && cell === board[i - 2][j + 2] && cell === board[i - 3][j + 3]) {
                     console.log(` ${currentPlayer} DiagonalLeft WIN`)
                     return true
                 }
