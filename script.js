@@ -1,17 +1,15 @@
+let board = [
+    ["C", "c", "c", "c", "c", "c", "c"],
+    ["C", "c", "c", "c", "c", "c", "c"],
+    ["C", "c", "c", "c", "c", "c", "c"],
+    ["C", "c", "c", "c", "c", "c", "c"],
+    ["C", "c", "c", "c", "c", "c", "c"],
+    ["C", "c", "c", "c", "c", "c", "c"],
+    ["C", "c", "c", "c", "c", "c", "c"]
+]
+
 //FUNÇÃO DE CRIAÇÃO DO TABULEIRO
-
 function makeBoard() {
-    board = [
-        ["C", "c", "c", "c", "c", "c", "c"],
-        ["C", "c", "c", "c", "c", "c", "c"],
-        ["C", "c", "c", "c", "c", "c", "c"],
-        ["C", "c", "c", "c", "c", "c", "c"],
-        ["C", "c", "c", "c", "c", "c", "c"],
-        ["C", "c", "c", "c", "c", "c", "c"],
-        ["C", "c", "c", "c", "c", "c", "c"]
-    ]
-
-
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
             if (j === 0) {
@@ -33,13 +31,13 @@ function makeBoard() {
 }
 
 makeBoard()
+addEventListners()
 
+
+let currentPlayer = 'rick'
 
 //FUNÇÃO QUE COLOCA UM ADDEVENTLISTNERS EM CADA COLUNA
-
-addEventLitners()
-
-function addEventLitners() {
+function addEventLitsners() {
     let column = document.getElementsByClassName('column')
     for (let i = 0; i < column.length; i++) {
         column[i].addEventListener('click', creatSon)
@@ -47,60 +45,46 @@ function addEventLitners() {
 }
 
 //FUNÇÃO QUE CRIA AS PEÇAS DOS JOGADORES
+function lastCellViable(cells){
+    for (let i = 0; i < cells.length; i++) {
+        if (cells[i].childElementCount === 0) {
+            return cells[i]
+        }
+    }
+}
 
-let currentPlayer = 0
+
+function pieceCreator(currentPlayer, place){
+    let piece = document.createElement('div')
+    piece.classList.add(currentPlayer)
+    let img = document.createElement('img')
+    if (currentPlayer === 'rick'){
+        img.src = 'imagens/rick.png'
+        currentPlayer = 'morty'
+    } else {
+        img.src = 'imagens/morty.png'
+        currentPlayer = 'rick'
+    }
+    piece.appendChild(img)
+    place.appendChild(piece)
+}
+
+
+
+
 
 function creatSon(u) {
     u.stopPropagation()
     let column = u.target.parentNode
     let cells = column.children
-    peace = document.createElement('div')
-    playersTurn(rick)
-    let lastCellViable = null
-    for (let i = 0; i < cells.length; i++) {
-        if (cells[i].childElementCount === 0) {
-            lastCellViable = cells[i]
-            break
-        }
-    }
-    if (currentPlayer === 0) {
-        playersTurn(morty)
-        //acho que essa parte de adicionar a imagem e criar a div em si poderia ser uma função
-        peace.classList.add('rick')
-        let rickImg = document.createElement('img')
-        rickImg.src = 'imagens/rick.png'
-        peace.appendChild(rickImg)
-        lastCellViable.appendChild(peace)
-        //até aqui 
-        modifyBoard(peace)
-        if (seekAndDestroy()) {
-            //isso aqui poderia ser outra função também, pois até no empate a gnt faz isso 
-            let output = document.getElementById('currentPlayer')
-            let player1 = document.getElementById('player1').value
-            output.innerText = `Parabéns ${player1}, você venceu! Um Rick sempre vai ser melhor que um Morty...`
-            //até aqui
-        }
-        currentPlayer++
-    }
-    else {
-        //mesma coisa, chamar função para criar a div
-        peace.classList.add('morty')
-        let mortyImg = document.createElement('img')
-        mortyImg.src = 'imagens/morty.png'
-        peace.appendChild(mortyImg)
-        lastCellViable.appendChild(peace)
-        //até aqui
-        modifyBoard(peace)
-        if (seekAndDestroy()) {
-            //outra função
-            let output = document.getElementById('currentPlayer')
-            let player2 = document.getElementById('player2').value
-            output.innerText = `Parabéns ${player2}, você venceu! As vezes um Morty consegue ser melhor...`
-            //até aqui
-        }
+    let place = lastCellViable(cells)
+    pieceCreator(currentPlayer, place)
+    
+    
+    
 
-        currentPlayer--
-    }
+
+
     if (isDraw()) {
         //aqui seria a mesma função da condição de vitória, é só a gnt fazer um parâmetro que iria identificar o que fazer no innerText
         let output = document.getElementById('currentPlayer')
@@ -157,11 +141,21 @@ function modifyBoard(letter) {
 //FUNÇÃO DE CONDIÇÃO DE VITÓRIA
 //Dividir seekAndDestroy em funções menores, achar o bug na função de diagonal
 
-function seekAndDestroy() {
+function winAndDrawCondition(){
+    if( seekVertical() || seekHorizontal() || seekDiagonalUpRight() || seekDiagonalUpLeft()){
+        //colocar aqui a tela de vítoria!
+        console.log(`${currentPlayer} WIN!`)
+    }
+
+    if( isDraw() ){
+        //colocar tela de empate aqui
+        console.log('EMPATE')
+    }
+}
+
+function seekVertical(){
     let edgeI = board.length
     let edgeJ = board[0].length - 3
-
-    //vertical linha por linha
     for (let i = 0; i < edgeI; i++) {
         for (j = 1; j < edgeJ; j++) {
             let cell = board[i][j]
@@ -173,10 +167,11 @@ function seekAndDestroy() {
             }
         }
     }
+}
 
-    //horizontal
-    edgeI = board.length - 3
-    edgeJ = board[0].length
+function seekHorizontal(){
+    let edgeI = board.length - 3
+    let edgeJ = board[0].length
     for (let i = 0; i < edgeI; i++) {
         for (let j = 1; j < edgeJ; j++) {
             let cell = board[i][j]
@@ -188,10 +183,11 @@ function seekAndDestroy() {
             }
         }
     }
+}
 
-    //diagonalUpRight
-    edgeI = board.length - 3
-    edgeJ = board[0].length - 3
+function seekDiagonalUpRight(){
+    let edgeI = board.length - 3
+    let edgeJ = board[0].length - 3
     for (let i = 0; i < edgeI; i++) {
         for (let j = 1; j < edgeJ; j++) {
             let cell = board[i][j]
@@ -203,7 +199,11 @@ function seekAndDestroy() {
             }
         }
     }
+}
 
+function seekDiagonalUpLeft(){
+    let edgeI = board.length
+    let edgeJ = board[0].length - 3
     edgeI = board.length
     for (let i = 3; i < edgeI; i++) {
         for (let j = 1; j < edgeJ; j++) {
@@ -216,19 +216,34 @@ function seekAndDestroy() {
             }
         }
     }
+
 }
+
+
+
+// let board = [
+//0    ["C", "c", "c", "c", "c", "c", "c"],
+//1    ["C", "c", "c", "c", "c", "c", "c"],
+//2    ["C", "c", "c", "c", "c", "c", "c"],
+//3    ["C", "c", "c", "c", "c", "c", "c"],
+//4    ["C", "c", "c", "c", "c", "c", "c"],
+//5    ["C", "c", "c", "c", "c", "c", "c"],
+//6    ["C", "c", "c", "c", "c", "c", "c"]
+// ]
+
+
+
 
 //FUNÇÃO DE EMPATE
 
 function isDraw() {
-    let result = true
     for (let i = 0; i < board.length; i++) {
         for (let j = 1; j < board[i].length; j++) {
             if (board[i][j] === "c") {
-                result = false
+                return false
             }
         }
     }
-    return result
+    return true
 }
 
