@@ -246,8 +246,8 @@ function isDraw() {
 }
 
 function winOrDrawScreen(element) {
-    let board = document.getElementById('board')
-    board.classList.add('boardHide')
+    let board1 = document.getElementById('board')
+    board1.classList.add('boardHide')
 
     let divPlayer = document.getElementById('currentPlayer')
     divPlayer.classList.add('boardHide')
@@ -281,6 +281,24 @@ function winOrDrawScreen(element) {
         winDiv.appendChild(winGif)
         destination.appendChild(winDiv)
     }
+
+    setTimeout(() => {
+        winDiv.classList.add('hide')
+        board1.innerHTML = ""
+        board1.classList.remove('boardHide')
+        divPlayer.classList.remove('boardHide')
+        board = [
+            ["C", "c", "c", "c", "c", "c", "c"],
+            ["C", "c", "c", "c", "c", "c", "c"],
+            ["C", "c", "c", "c", "c", "c", "c"],
+            ["C", "c", "c", "c", "c", "c", "c"],
+            ["C", "c", "c", "c", "c", "c", "c"],
+            ["C", "c", "c", "c", "c", "c", "c"],
+            ["C", "c", "c", "c", "c", "c", "c"]
+        ]
+        makeBoard()
+        addEventListners()
+    }, 2000)
 
 }
 
