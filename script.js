@@ -8,6 +8,8 @@ let board = [
     ["C", "c", "c", "c", "c", "c", "c"]
 ]
 
+let currentPlayer = 'rick'
+
 //FUNÇÃO DE CRIAÇÃO DO TABULEIRO
 function makeBoard() {
     for (let i = 0; i < board.length; i++) {
@@ -34,13 +36,13 @@ makeBoard()
 addEventListners()
 
 
-let currentPlayer = 'rick'
+
 
 //FUNÇÃO QUE COLOCA UM ADDEVENTLISTNERS EM CADA COLUNA
 function addEventListners() {
     let column = document.getElementsByClassName('column')
     for (let i = 0; i < column.length; i++) {
-        column[i].addEventListener('click', creatSon)
+        column[i].addEventListener('click', gamePlay)
     }
 }
 
@@ -60,41 +62,47 @@ function pieceCreator(place){
     let img = document.createElement('img')
     if (currentPlayer === 'rick'){
         img.src = 'imagens/rick.png'
-        currentPlayer = 'morty'
     } else if(currentPlayer === 'morty'){
         img.src = 'imagens/morty.png'
-        currentPlayer = 'rick'
     }
     piece.appendChild(img)
     place.appendChild(piece)
+    modifyBoard(piece)
+}
+
+function switchPlayer(){
+    if(currentPlayer === 'rick'){
+        currentPlayer = 'morty'
+    } else if(currentPlayer === 'morty') {
+        currentPlayer = 'rick'
+    }
+
+    playersTurn(currentPlayer)
 }
 
 
 
 
 
-function creatSon(u) {
+function gamePlay(u) {
     u.stopPropagation()
     let column = u.target.parentNode
     let cells = column.children
     let place = lastCellViable(cells)
     pieceCreator(place)
-    
-    
-    
-
-
-
-    if (isDraw()) {
-        //aqui seria a mesma função da condição de vitória, é só a gnt fazer um parâmetro que iria identificar o que fazer no innerText
-        let output = document.getElementById('currentPlayer')
-        output.innerText = "Deu empate!"
+    if(winAndDrawCondition() === "WIN"){
+        //função para mostrar o vencedor
+        console.log('WIN')
     }
+
+    if(winAndDrawCondition() === "DRAW"){
+        //função para mostrar empate
+        console.log('DRAW')
+    }
+    switchPlayer()
 }
 
 //FUNÇÃO DO BOTÃO JOGAR
-
-
 let button = document.getElementById('jogar')
 button.addEventListener('click', function () {
     let hidden = document.getElementById('inicial')
@@ -106,7 +114,7 @@ button.addEventListener('click', function () {
     let divPlayer = document.getElementById('currentPlayer')
     divPlayer.classList.remove('boardHide')
 
-    playersTurn(rick)
+    playersTurn(currentPlayer)
 
 })
 
@@ -114,12 +122,12 @@ button.addEventListener('click', function () {
 
 function playersTurn(a) {
     let output = document.getElementById('currentPlayer')
-    if (a === rick) {
+    if (a === 'rick') {
         let player1 = document.getElementById('player1').value
         output.innerText = `Sua vez ${player1}!`
     }
 
-    if (a === morty) {
+    if (a === 'morty') {
         let player2 = document.getElementById('player2').value
         output.innerText = `Sua vez ${player2}!`
     }
@@ -139,17 +147,18 @@ function modifyBoard(letter) {
 
 
 //FUNÇÃO DE CONDIÇÃO DE VITÓRIA
-//Dividir seekAndDestroy em funções menores, achar o bug na função de diagonal
 
 function winAndDrawCondition(){
     if( seekVertical() || seekHorizontal() || seekDiagonalUpRight() || seekDiagonalUpLeft()){
         //colocar aqui a tela de vítoria!
         console.log(`${currentPlayer} WIN!`)
+        return "WIN"
     }
 
     if( isDraw() ){
-        //colocar tela de empate aqui
         console.log('EMPATE')
+        return "DRAW"
+        
     }
 }
 
@@ -161,7 +170,6 @@ function seekVertical(){
             let cell = board[i][j]
             if (cell !== "c") {
                 if (cell === board[i][j + 1] && cell == board[i][j + 2] && cell === board[i][j + 3]) {
-                    console.log(`${currentPlayer} VERTICAL WIN`)
                     return true
                 }
             }
@@ -177,7 +185,6 @@ function seekHorizontal(){
             let cell = board[i][j]
             if (cell !== "c") {
                 if (cell === board[i + 1][j] && cell === board[i + 2][j] && cell === board[i + 3][j]) {
-                    console.log(`${currentPlayer} HORIZONTAL WIN`)
                     return true
                 }
             }
@@ -193,7 +200,6 @@ function seekDiagonalUpRight(){
             let cell = board[i][j]
             if (cell !== "c") {
                 if (cell === board[i + 1][j + 1] && cell === board[i + 2][j + 2] && cell === board[i + 3][j + 3]) {
-                    console.log(`${currentPlayer} DiagonalUpRight WIN`)
                     return true
                 }
             }
@@ -210,7 +216,6 @@ function seekDiagonalUpLeft(){
             let cell = board[i][j]
             if (cell !== "c") {
                 if (cell === board[i - 1][j + 1] && cell === board[i - 2][j + 2] && cell === board[i - 3][j + 3]) {
-                    console.log(` ${currentPlayer} DiagonalLeft WIN`)
                     return true
                 }
             }
@@ -218,23 +223,6 @@ function seekDiagonalUpLeft(){
     }
 
 }
-
-
-
-// let board = [
-//0    ["C", "c", "c", "c", "c", "c", "c"],
-//1    ["C", "c", "c", "c", "c", "c", "c"],
-//2    ["C", "c", "c", "c", "c", "c", "c"],
-//3    ["C", "c", "c", "c", "c", "c", "c"],
-//4    ["C", "c", "c", "c", "c", "c", "c"],
-//5    ["C", "c", "c", "c", "c", "c", "c"],
-//6    ["C", "c", "c", "c", "c", "c", "c"]
-// ]
-
-
-
-
-//FUNÇÃO DE EMPATE
 
 function isDraw() {
     for (let i = 0; i < board.length; i++) {
