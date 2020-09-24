@@ -35,7 +35,12 @@ function makeBoard() {
 makeBoard()
 addEventListners()
 
+//Pontos do placar
+let rickWins = 0
+document.getElementById('pontosR').innerText = rickWins
 
+let mortyWins = 0
+document.getElementById('pontosM').innerText = mortyWins
 
 
 //FUNÇÃO QUE COLOCA UM ADDEVENTLISTNERS EM CADA COLUNA
@@ -91,15 +96,11 @@ function gamePlay(u) {
     let place = lastCellViable(cells)
     pieceCreator(place)
     if (winAndDrawCondition() === "WIN") {
-        //função para mostrar o vencedor
-        //winOrDrawScreen(currentPlayer)
         time(currentPlayer)
         console.log('WIN')
     }
 
     if (winAndDrawCondition() === "DRAW") {
-        //função para mostrar empate
-        // winOrDrawScreen('draw')
         time('draw')
         console.log('DRAW')
     }
@@ -124,6 +125,9 @@ button.addEventListener('click', function () {
     let divPlayer = document.getElementById('currentPlayer')
     divPlayer.classList.remove('boardHide')
 
+    let score = document.getElementById('score')
+    score.classList.remove('boardHide')
+
     playersTurn(currentPlayer)
 
 })
@@ -143,7 +147,6 @@ function playersTurn(a) {
     }
 }
 
-//FUNÇÃO QUEMODIFICA O BOARD CADA VEZ QUE UMA PEÇA É COLOCADA
 
 function modifyBoard(letter) {
     let arrId = letter.parentNode.id.split('')
@@ -245,6 +248,7 @@ function isDraw() {
     return true
 }
 
+
 function winOrDrawScreen(element) {
     let board1 = document.getElementById('board')
     board1.classList.add('boardHide')
@@ -264,6 +268,8 @@ function winOrDrawScreen(element) {
         winDiv.textContent = `Parabéns ${player1}! Um Rick sempre vai ser melhor que um Morty...`
         winDiv.appendChild(winGif)
         destination.appendChild(winDiv)
+        rickWins++
+        document.getElementById('pontosR').innerText = rickWins
     }
 
     if (element === 'morty') {
@@ -272,6 +278,8 @@ function winOrDrawScreen(element) {
         winDiv.textContent = `Parabéns ${player2}! Um Morty as vezes consegue...`
         winDiv.appendChild(winGif)
         destination.appendChild(winDiv)
+        mortyWins++
+        document.getElementById('pontosM').innerText = mortyWins
     }
 
     if (element === 'draw') {
@@ -298,7 +306,7 @@ function winOrDrawScreen(element) {
         ]
         makeBoard()
         addEventListners()
-    }, 2000)
+    }, 3000)
 
 }
 

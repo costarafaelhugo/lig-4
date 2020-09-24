@@ -5,6 +5,7 @@ body {
     background-image: url(imagens/background-stars.jpg);
     width: 100vw;
     font-family: 'Covered By Your Grace', cursive;
+    font-size: 16px;
 }
 
 header{
@@ -28,6 +29,91 @@ main {
     flex-direction: column;
     align-items: center;
     width: 100%;
+}
+
+.placarTitulo{
+    color: white;
+    font-size: 32px;
+}
+
+.placar {
+    width: 30vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
+.rickPoints {
+    border: none;
+    color: #1B3C25;
+    animation: neon 1s ease-in-out infinite;
+    border-radius: 10px;
+    text-transform: uppercase;
+    padding-left: 5px;
+    width: 90%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    
+}
+
+#pontosR, #pontosM {
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+.mortyPoints {
+    border: none;
+    color: #6A6411;
+    animation: neon2 1s ease-in infinite;
+    border-radius: 10px;
+    text-transform: uppercase;
+    width: 90%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    
+}
+
+@keyframes neon {
+    0% {
+        background:#00FE00;
+    }
+    25% {
+        background: #8DFF00;
+    }
+    50% {
+        background: #87D400;
+    }
+    75% {
+        background: #5CDB51;
+    }
+    100% {
+        background: #55E575;
+    }
+}
+
+@keyframes neon2{
+    0% {
+        background: #55E575;
+    }
+
+    25% {
+        background: #5CDB51;
+    }
+
+    50% {
+        background: #87D400;
+    }
+
+    75% {
+        background:#8DFF00;
+    }
+
+    100% {
+        background:#00FE00;
+    }
 }
 
 #portal{
@@ -94,7 +180,7 @@ input {
 }
 
 #board {
-    margin: 40px 0px; 
+    margin: 10px 0px; 
     display: flex;
     flex-wrap: wrap;
     justify-content: bottom;
@@ -163,8 +249,8 @@ input {
 #currentPlayer{
     text-align: center;
     font-size: 1.3em;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
     border-radius: 10px;
     color: white;
     padding: 10px;
