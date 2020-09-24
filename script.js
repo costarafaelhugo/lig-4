@@ -37,7 +37,7 @@ addEventListners()
 let currentPlayer = 'rick'
 
 //FUNÇÃO QUE COLOCA UM ADDEVENTLISTNERS EM CADA COLUNA
-function addEventLitsners() {
+function addEventListners() {
     let column = document.getElementsByClassName('column')
     for (let i = 0; i < column.length; i++) {
         column[i].addEventListener('click', creatSon)
@@ -54,14 +54,14 @@ function lastCellViable(cells){
 }
 
 
-function pieceCreator(currentPlayer, place){
+function pieceCreator(place){
     let piece = document.createElement('div')
     piece.classList.add(currentPlayer)
     let img = document.createElement('img')
     if (currentPlayer === 'rick'){
         img.src = 'imagens/rick.png'
         currentPlayer = 'morty'
-    } else {
+    } else if(currentPlayer === 'morty'){
         img.src = 'imagens/morty.png'
         currentPlayer = 'rick'
     }
@@ -78,7 +78,7 @@ function creatSon(u) {
     let column = u.target.parentNode
     let cells = column.children
     let place = lastCellViable(cells)
-    pieceCreator(currentPlayer, place)
+    pieceCreator(place)
     
     
     
