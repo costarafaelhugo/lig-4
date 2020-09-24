@@ -172,6 +172,36 @@ input {
     background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
 }
 
+#endGame {
+    margin-top: 20%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: rgb(48,157,11);
+    background: radial-gradient(circle, rgba(48,157,11,1) 37%, rgba(27,60,37,1) 87%);
+    padding: 20px;
+    width: 70vw;
+}
+
+#rickWin {
+    width: 40vw;
+    margin-top: 10px;
+    margin-left: 20%;
+}
+
+#mortyWin{
+    width: 40vw;
+    margin-top: 10px;
+    margin-left: 20%;
+    
+}
+
+#gifMaior{
+    margin-top: 10px;
+    width: 70vw;
+}
+
 
 @media(min-width: 500px){
 
@@ -344,5 +374,28 @@ input {
 
     .boardHide {
         display: none !important;
+    }
+
+    #endGame{
+        width: 40vw;
+        margin-top: 5%;
+        font-size: 1.5em;
+    }
+
+    #rickWin {
+        height: 50vh;
+        width: 15vw;
+        margin-left: 30%;
+    }
+
+    #mortyWin {
+        height: 50vh;
+        width: 15vw;
+        margin-left: 30%;
+    }
+
+
+    #gifMaior {
+        width: 40vw;
     }
 }

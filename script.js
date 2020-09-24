@@ -47,7 +47,7 @@ function addEventListners() {
 }
 
 //FUNÇÃO QUE CRIA AS PEÇAS DOS JOGADORES
-function lastCellViable(cells){
+function lastCellViable(cells) {
     for (let i = 0; i < cells.length; i++) {
         if (cells[i].childElementCount === 0) {
             return cells[i]
@@ -56,13 +56,13 @@ function lastCellViable(cells){
 }
 
 
-function pieceCreator(place){
+function pieceCreator(place) {
     let piece = document.createElement('div')
     piece.classList.add(currentPlayer)
     let img = document.createElement('img')
-    if (currentPlayer === 'rick'){
+    if (currentPlayer === 'rick') {
         img.src = 'imagens/rick.png'
-    } else if(currentPlayer === 'morty'){
+    } else if (currentPlayer === 'morty') {
         img.src = 'imagens/morty.png'
     }
     piece.appendChild(img)
@@ -70,10 +70,10 @@ function pieceCreator(place){
     modifyBoard(piece)
 }
 
-function switchPlayer(){
-    if(currentPlayer === 'rick'){
+function switchPlayer() {
+    if (currentPlayer === 'rick') {
         currentPlayer = 'morty'
-    } else if(currentPlayer === 'morty') {
+    } else if (currentPlayer === 'morty') {
         currentPlayer = 'rick'
     }
 
@@ -90,16 +90,26 @@ function gamePlay(u) {
     let cells = column.children
     let place = lastCellViable(cells)
     pieceCreator(place)
-    if(winAndDrawCondition() === "WIN"){
+    if (winAndDrawCondition() === "WIN") {
         //função para mostrar o vencedor
+        //winOrDrawScreen(currentPlayer)
+        time(currentPlayer)
         console.log('WIN')
     }
 
-    if(winAndDrawCondition() === "DRAW"){
+    if (winAndDrawCondition() === "DRAW") {
         //função para mostrar empate
+        // winOrDrawScreen('draw')
+        time('draw')
         console.log('DRAW')
     }
     switchPlayer()
+}
+
+function time(player) {
+    setTimeout(function () {
+        winOrDrawScreen(player)
+    }, 1250);
 }
 
 //FUNÇÃO DO BOTÃO JOGAR
@@ -148,21 +158,21 @@ function modifyBoard(letter) {
 
 //FUNÇÃO DE CONDIÇÃO DE VITÓRIA
 
-function winAndDrawCondition(){
-    if( seekVertical() || seekHorizontal() || seekDiagonalUpRight() || seekDiagonalUpLeft()){
+function winAndDrawCondition() {
+    if (seekVertical() || seekHorizontal() || seekDiagonalUpRight() || seekDiagonalUpLeft()) {
         //colocar aqui a tela de vítoria!
         console.log(`${currentPlayer} WIN!`)
         return "WIN"
     }
 
-    if( isDraw() ){
+    if (isDraw()) {
         console.log('EMPATE')
         return "DRAW"
-        
+
     }
 }
 
-function seekVertical(){
+function seekVertical() {
     let edgeI = board.length
     let edgeJ = board[0].length - 3
     for (let i = 0; i < edgeI; i++) {
@@ -177,7 +187,7 @@ function seekVertical(){
     }
 }
 
-function seekHorizontal(){
+function seekHorizontal() {
     let edgeI = board.length - 3
     let edgeJ = board[0].length
     for (let i = 0; i < edgeI; i++) {
@@ -192,7 +202,7 @@ function seekHorizontal(){
     }
 }
 
-function seekDiagonalUpRight(){
+function seekDiagonalUpRight() {
     let edgeI = board.length - 3
     let edgeJ = board[0].length - 3
     for (let i = 0; i < edgeI; i++) {
@@ -207,7 +217,7 @@ function seekDiagonalUpRight(){
     }
 }
 
-function seekDiagonalUpLeft(){
+function seekDiagonalUpLeft() {
     let edgeI = board.length
     let edgeJ = board[0].length - 3
     edgeI = board.length
@@ -234,4 +244,44 @@ function isDraw() {
     }
     return true
 }
+
+function winOrDrawScreen(element) {
+    let board = document.getElementById('board')
+    board.classList.add('boardHide')
+
+    let divPlayer = document.getElementById('currentPlayer')
+    divPlayer.classList.add('boardHide')
+
+    let destination = document.getElementById('main')
+    let winDiv = document.createElement('div')
+    winDiv.id = "endGame"
+    let winGif = document.createElement('img')
+    let player1 = document.getElementById('player1').value
+    let player2 = document.getElementById('player2').value
+    if (element === 'rick') {
+        winGif.src = "imagens/rickWin.gif"
+        winGif.id = "rickWin"
+        winDiv.textContent = `Parabéns ${player1}! Um Rick sempre vai ser melhor que um Morty...`
+        winDiv.appendChild(winGif)
+        destination.appendChild(winDiv)
+    }
+
+    if (element === 'morty') {
+        winGif.src = "imagens/mortyWin.gif"
+        winGif.id = "mortyWin"
+        winDiv.textContent = `Parabéns ${player2}! Um Morty as vezes consegue...`
+        winDiv.appendChild(winGif)
+        destination.appendChild(winDiv)
+    }
+
+    if (element === 'draw') {
+        winGif.id = "gifMaior"
+        winGif.src = "imagens/gifLosers.gif"
+        winDiv.textContent = 'Nenhum dos dois conseguiu ganhar? Poxa... hoje não é um dia para uma aventura.'
+        winDiv.appendChild(winGif)
+        destination.appendChild(winDiv)
+    }
+
+}
+
 
