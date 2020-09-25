@@ -1,12 +1,11 @@
 pages:
   stage: deploy
-  script: 
-    - echo "Creating \(then using\) new \"public\" directory from files at project root"
-    - mkdir ./.public
-    - cp -r * ./.public
-    - mv ./.public ./public
+  script:
+  - mkdir .public
+  - cp -r * .public
+  - mv .public public
   artifacts:
     paths:
-      - public
+    - public
   only:
-    - master
+  - master
