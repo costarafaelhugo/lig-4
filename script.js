@@ -306,7 +306,7 @@ function winOrDrawScreen(element) {
         ]
         makeBoard()
         addEventListners()
-    }, 3000)
+    }, 5000)
 
 }
 
